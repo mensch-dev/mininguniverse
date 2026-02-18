@@ -225,8 +225,17 @@
     <section class="stat-card">
         <div class="stat-label">Total Blocks Mined</div>
         <div class="number" id="blocks">Loading...</div>
-        <div class="stat-note">Live global progress updates every 10 seconds.</div>
+
+        <div style="height:20px;"></div>
+
+        <div class="stat-label">Total Eggs Hatched</div>
+        <div class="number" id="eggs">Loading...</div>
+
+        <div class="stat-note">
+            Live global progress updates every 10 seconds.
+        </div>
     </section>
+
 
     <section class="highlights">
         <article class="highlight">
@@ -248,7 +257,7 @@
 const SUPABASE_URL = "https://zycqylctqcnhsxhembsb.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5Y3F5bGN0cWNuaHN4aGVtYnNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0MzcwNDAsImV4cCI6MjA4NzAxMzA0MH0.7iW6P9yf39Sk9xMsTxymYSqW60CQhIHKUjY3SUhsnsA";
 
-async function loadBlocks() {
+async function loadStats() {
     try {
         const response = await fetch(
             `${SUPABASE_URL}/rest/v1/mining_universe_stats?game_id=eq.1`,
@@ -265,16 +274,23 @@ async function loadBlocks() {
         }
 
         const data = await response.json();
-        const blocks = data[0]?.blocks_mined || 0;
-        document.getElementById("blocks").innerText = Number(blocks).toLocaleString();
+        const row = data[0];
+
+        document.getElementById("blocks").innerText =
+            Number(row?.blocks_mined || 0).toLocaleString();
+
+        document.getElementById("eggs").innerText =
+            Number(row?.eggs_hatched || 0).toLocaleString();
+
     } catch (error) {
         document.getElementById("blocks").innerText = "Unavailable";
+        document.getElementById("eggs").innerText = "Unavailable";
         console.error(error);
     }
 }
 
-loadBlocks();
-setInterval(loadBlocks, 10000);
+loadStats();
+setInterval(loadStats, 10000);
 </script>
 </body>
 </html>
