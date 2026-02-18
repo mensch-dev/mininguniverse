@@ -1,1 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mining Universe | Upcoming Roblox Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@500;700&display=swap" rel="stylesheet">
 
+<style>
+    :root {
+        --bg-1: #1a1209;
+        --bg-2: #3a2512;
+        --bg-3: #9a6b39;
+        --card: rgba(255, 239, 220, 0.12);
+        --card-border: rgba(255, 244, 226, 0.24);
+        --text-main: #fff6ea;
+        --text-dim: #ffe3bf;
+        --accent: #ffd37d;
+        --accent-2: #ffb24a;
+        --mint: #7dffd7;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Outfit", sans-serif;
+        color: var(--text-main);
+        background:
+            radial-gradient(circle at 15% 15%, rgba(255, 193, 121, 0.25), transparent 35%),
+            radial-gradient(circle at 85% 20%, rgba(255, 136, 64, 0.22), transparent 42%),
+            radial-gradient(circle at 50% 100%, rgba(30, 16, 8, 0.65), transparent 55%),
+            linear-gradient(135deg, var(--bg-1), var(--bg-2) 55%, var(--bg-3));
+        overflow-x: hidden;
+    }
+
+    .bg-shape {
+        position: fixed;
+        border-radius: 999px;
+        filter: blur(60px);
+        opacity: 0.45;
+        pointer-events: none;
+        z-index: 0;
+        animation: float 11s ease-in-out infinite;
+    }
+
+    .shape-a {
+        width: 360px;
+        height: 360px;
+        background: #ffcf8a;
+        top: -120px;
+        left: -90px;
+    }
+
+    .shape-b {
+        width: 290px;
+        height: 290px;
+        background: #ff9652;
+        right: -80px;
+        bottom: -70px;
+        animation-delay: -4s;
+    }
+
+    .container {
+        position: relative;
+        z-index: 1;
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 42px 20px 24px;
+    }
+
+    .hero {
+        text-align: center;
+        padding: 30px 0 22px;
+        animation: fadeInUp 0.8s ease both;
+    }
+
+    .badge {
+        display: inline-block;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #2f1b08;
+        background: linear-gradient(120deg, var(--accent), var(--accent-2));
+        border-radius: 999px;
+        padding: 9px 14px;
+        box-shadow: 0 8px 24px rgba(255, 178, 74, 0.3);
+    }
+
+    h1 {
+        margin: 18px 0 12px;
+        font-family: "Sora", sans-serif;
+        font-size: clamp(32px, 6vw, 64px);
+        line-height: 1.05;
+    }
+
+    .lead {
+        margin: 0 auto;
+        max-width: 760px;
+        color: var(--text-dim);
+        font-size: clamp(16px, 2.3vw, 20px);
+        line-height: 1.6;
+    }
+
+    .stat-card {
+        margin: 34px auto 0;
+        width: min(680px, 100%);
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        border-radius: 24px;
+        text-align: center;
+        padding: 26px 22px 30px;
+        box-shadow: 0 18px 45px rgba(14, 8, 3, 0.38);
+        backdrop-filter: blur(6px);
+        animation: fadeInUp 1s 0.15s ease both;
+    }
+
+    .stat-label {
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-size: 12px;
+        font-weight: 700;
+        color: #ffd9a0;
+    }
+
+    .number {
+        margin-top: 10px;
+        font-family: "Sora", sans-serif;
+        font-size: clamp(40px, 9vw, 72px);
+        line-height: 1.1;
+        font-weight: 700;
+        color: var(--mint);
+        text-shadow: 0 0 22px rgba(125, 255, 215, 0.24);
+    }
+
+    .stat-note {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #ffd9b3;
+    }
+
+    .highlights {
+        margin-top: 34px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        animation: fadeInUp 1.2s 0.25s ease both;
+    }
+
+    .highlight {
+        background: rgba(255, 243, 226, 0.09);
+        border: 1px solid rgba(255, 241, 222, 0.18);
+        border-radius: 18px;
+        padding: 16px 15px;
+    }
+
+    .highlight h2 {
+        margin: 0 0 6px;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #ffe5bf;
+    }
+
+    .highlight p {
+        margin: 0;
+        color: #fff3df;
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(18px);
+        }
+    }
+
+    @media (max-width: 860px) {
+        .container {
+            padding-top: 30px;
+        }
+
+        .highlights {
+            grid-template-columns: 1fr;
+            margin-top: 22px;
+        }
+    }
+</style>
+</head>
+
+<body>
+<div class="bg-shape shape-a"></div>
+<div class="bg-shape shape-b"></div>
+
+<main class="container">
+    <section class="hero">
+        <span class="badge">Upcoming Roblox Game</span>
+        <h1>Mining Universe</h1>
+        <p class="lead">
+            Dig deep, uncover rare ores, and mine your way through massive underground worlds.
+            This is an upcoming Roblox mining adventure where every block counts.
+        </p>
+    </section>
+
+    <section class="stat-card">
+        <div class="stat-label">Total Blocks Mined</div>
+        <div class="number" id="blocks">Loading...</div>
+        <div class="stat-note">Live global progress updates every 10 seconds.</div>
+    </section>
+
+    <section class="highlights">
+        <article class="highlight">
+            <h2>Explore</h2>
+            <p>Travel through layered worlds full of hidden caverns and valuable materials.</p>
+        </article>
+        <article class="highlight">
+            <h2>Upgrade</h2>
+            <p>Improve pickaxes, backpacks, and explosives to mine faster and go deeper.</p>
+        </article>
+        <article class="highlight">
+            <h2>Compete</h2>
+            <p>Climb global leaderboards and show off your mining power.</p>
+        </article>
+    </section>
+</main>
+
+<script>
+const SUPABASE_URL = "https://zycqylctqcnhsxhembsb.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5Y3F5bGN0cWNuaHN4aGVtYnNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0MzcwNDAsImV4cCI6MjA4NzAxMzA0MH0.7iW6P9yf39Sk9xMsTxymYSqW60CQhIHKUjY3SUhsnsA";
+
+async function loadBlocks() {
+    try {
+        const response = await fetch(
+            `${SUPABASE_URL}/rest/v1/mining_universe_stats?game_id=eq.1`,
+            {
+                headers: {
+                    "apikey": SUPABASE_ANON_KEY,
+                    "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+                }
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const blocks = data[0]?.blocks_mined || 0;
+        document.getElementById("blocks").innerText = Number(blocks).toLocaleString();
+    } catch (error) {
+        document.getElementById("blocks").innerText = "Unavailable";
+        console.error(error);
+    }
+}
+
+loadBlocks();
+setInterval(loadBlocks, 10000);
+</script>
+</body>
+</html>
